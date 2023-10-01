@@ -19,6 +19,7 @@ public class BaseballController {
     }
 
     public void playGame() {
+        outputView.printStartMessage();
         Validator validator = new InputValidator();
 
         List<Integer> computers = GenerateRandomNumbers.generate();

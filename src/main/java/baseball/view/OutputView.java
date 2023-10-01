@@ -5,6 +5,7 @@ public class OutputView {
     public static final String BALL = "볼";
     public static final String STRIKE = "스트라이크";
     public static final String NOT_THING = "낫싱";
+    public static final String BASEBALL_GAME_START_MESSAGE = "숫자 야구 게임을 시작합니다.";
 
     public OutputView() {
     }
@@ -19,5 +20,9 @@ public class OutputView {
         } else if (strike == 0 && ball == 0) {
             System.out.println(NOT_THING);
         }
+    }
+
+    public void printStartMessage() {
+        System.out.println(BASEBALL_GAME_START_MESSAGE);
     }
 }
