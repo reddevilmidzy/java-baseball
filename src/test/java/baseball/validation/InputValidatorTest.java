@@ -25,5 +25,6 @@ class InputValidatorTest {
         assertThat(inputValidator.isValidate("1235")).isFalse();
         assertThat(inputValidator.isValidate("red")).isFalse();
         assertThat(inputValidator.isValidate("")).isFalse();
+        assertThat(inputValidator.isValidate(null)).isFalse();
     }
 }

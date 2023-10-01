@@ -10,6 +10,7 @@ public class InputValidator implements Validator {
 
     @Override
     public Boolean isValidate(String value) {
+        if (value == null) return false;
         return isUniqueValue(value) && isNumbers(value);
     }
 
