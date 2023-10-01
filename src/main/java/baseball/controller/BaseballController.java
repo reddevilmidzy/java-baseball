@@ -24,18 +24,29 @@ public class BaseballController {
 
         List<Integer> computers = GenerateRandomNumbers.generate();
         System.out.println("computers = " + computers);
-        String number = inputView.inputNumber();
 
-        if (!validator.isValidate(number)) {
-            throw new IllegalArgumentException();
+        boolean finished = false;
+
+        while (!finished) {
+            String number = inputView.inputNumber();
+
+            if (!validator.isValidate(number)) {
+                throw new IllegalArgumentException();
+            }
+
+            List<Integer> users = TypeConvert.mapIntegerList(number);
+            Score score = new Score(computers, users);
+
+            Integer strike = score.calculateStrike();
+            Integer ball = score.calculateBall();
+
+            outputView.printGameScore(strike, ball);
+
+            if (strike == 3) {
+                finished = true;
+                outputView.printEndMessage();
+            }
         }
 
-        List<Integer> users = TypeConvert.mapIntegerList(number);
-        Score score = new Score(computers, users);
-
-        Integer strike = score.calculateStrike();
-        Integer ball = score.calculateBall();
-
-        outputView.printGameScore(strike, ball);
     }
 }
