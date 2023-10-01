@@ -19,47 +19,50 @@ public class BaseballController {
         this.outputView = outputView;
     }
 
-    public void playGame() {
+    public void run() {
         outputView.printStartMessage();
+        playGame();
+    }
+
+    private void playGame() {
 
         Validator inputValidator = new InputValidator();
-        Validator restartValidator = new RestartValidator();
-
         List<Integer> computers = GenerateRandomNumbers.generate();
 
-        boolean finished = false;
-
-        while (!finished) {
+        while (true) {
             System.out.println("computers = " + computers);
             String number = inputView.inputNumber();
-
             if (!isValidate(inputValidator, number)) {
                 throw new IllegalArgumentException("숫자 입력 오류");
             }
-
             List<Integer> users = TypeConvert.mapIntegerList(number);
-            Score score = new Score(computers, users);
-
-            Integer strike = score.calculateStrike();
-            Integer ball = score.calculateBall();
-
-            outputView.printGameScore(strike, ball);
+            Integer strike = calculateResult(new Score(computers, users));
 
             if (strike == 3) {
-                outputView.printEndMessage();
-                String restart = inputView.inputRestartOrNot();
-                if (!isValidate(restartValidator, restart)) {
-                    throw new IllegalArgumentException("재시작 입력 오류");
-                }
-                if (restart.equals("1")) {
-                    computers = GenerateRandomNumbers.generate();
-                } else if (restart.equals("2")) {
-                    finished = true;
+                if (isRestart()) {
+                    playGame();
+                } else {
+                    break;
                 }
             }
         }
     }
 
+    private Integer calculateResult(Score score) {
+        Integer strike = score.calculateStrike();
+        Integer ball = score.calculateBall();
+        outputView.printGameScore(strike, ball);
+        return strike;
+    }
+
+    private Boolean isRestart() {
+        outputView.printEndMessage();
+        String restart = inputView.inputRestartOrNot();
+        if (!isValidate(new RestartValidator(), restart)) {
+            throw new IllegalArgumentException("재시작 입력 오류");
+        }
+        return restart.equals("1");
+    }
 
     private Boolean isValidate(Validator validator, String value) {
         return validator.isValidate(value);
