@@ -5,8 +5,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public static final String NUMBER_INPUT_MESSAGE = "숫자를 입력해주세요 : ";
-    //TODO: 시작 1과 종료 2는 언제든지 바뀔 수 있다. 메시지와 숫자를 분리하자.
-    public static final String RESTART_INPUT_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+    public static final String RESTART_INPUT_MESSAGE = "게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요.";
+    public static final String RESTART = "1";
+    public static final String STOP = "2";
+
 
     public InputView() {
     }
@@ -17,7 +19,7 @@ public class InputView {
     }
 
     public String inputRestartOrNot() {
-        System.out.println(RESTART_INPUT_MESSAGE);
+        System.out.printf((RESTART_INPUT_MESSAGE) + "%n", RESTART, STOP);
         return readInput();
     }
 
