@@ -37,15 +37,13 @@ public class BaseballController {
             }
             List<Integer> users = TypeConvert.mapIntegerList(number);
             Integer strike = calculateResult(new Score(computers, users));
-
-            if (strike == 3) {
-                if (isRestart()) {
-                    playGame();
-                } else {
-                    break;
-                }
+            if (strike == 3 && !isRestart()) {
+                return;
+            } else if (strike == 3) {
+                break;
             }
         }
+        playGame();
     }
 
     private Integer calculateResult(Score score) {
