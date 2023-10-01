@@ -2,10 +2,10 @@ package baseball.validation;
 
 import java.util.Objects;
 
-public class RestartValidator implements Validator {
+import static baseball.constant.Constants.RESTART;
+import static baseball.constant.Constants.STOP;
 
-    public static final String RESTART = "1";
-    public static final String STOP = "2";
+public class RestartValidator implements Validator {
 
     @Override
     public Boolean isValidate(String value) {

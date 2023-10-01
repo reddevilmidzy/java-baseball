@@ -2,11 +2,11 @@ package baseball.validation;
 
 import java.util.stream.Collectors;
 
-public class InputValidator implements Validator {
+import static baseball.constant.Constants.NUMBER_SIZE;
+import static baseball.constant.Constants.MAX_NUMBER;
+import static baseball.constant.Constants.MIN_NUMBER;
 
-    public static final int GUESS_NUMBER_SIZE = 3;
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 9;
+public class InputValidator implements Validator {
 
     @Override
     public Boolean isValidate(String value) {
@@ -14,10 +14,10 @@ public class InputValidator implements Validator {
     }
 
     private Boolean isUniqueValue(String value) {
-        return value.chars()
+        return NUMBER_SIZE == value.chars()
                 .mapToObj(ch -> (char) ch)
                 .collect(Collectors.toSet())
-                .size() == GUESS_NUMBER_SIZE;
+                .size();
     }
 
     private Boolean isNumbers(String value) {
