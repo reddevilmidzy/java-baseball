@@ -10,7 +10,7 @@ public class GenerateRandomNumbers {
     public GenerateRandomNumbers() {
     }
 
-    public List<Integer> generate() {
+    public static List<Integer> generate() {
         List<Integer> computer = new ArrayList<>();
 
         while (computer.size() < 3) {
