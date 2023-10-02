@@ -11,6 +11,9 @@ import baseball.view.OutputView;
 
 import java.util.List;
 
+import static baseball.constant.Constants.GOAL;
+import static baseball.constant.Constants.RESTART;
+
 public class BaseballController {
     InputView inputView;
     OutputView outputView;
@@ -38,9 +41,9 @@ public class BaseballController {
             }
             List<Integer> users = TypeConvert.mapIntegerList(number);
             Integer strike = calculateResult(new Score(computers, users));
-            if (strike == 3 && !isRestart()) {
+            if (strike == GOAL && !isRestart()) {
                 return;
-            } else if (strike == 3) {
+            } else if (strike == GOAL) {
                 break;
             }
         }
@@ -56,11 +59,11 @@ public class BaseballController {
 
     private Boolean isRestart() {
         outputView.printEndMessage();
-        String restart = inputView.inputRestartOrNot();
-        if (!isValidate(new RestartValidator(), restart)) {
+        String result = inputView.inputRestartOrNot();
+        if (!isValidate(new RestartValidator(), result)) {
             throw new IllegalArgumentException("재시작 입력 오류");
         }
-        return restart.equals("1");
+        return result.equals(RESTART);
     }
 
     private Boolean isValidate(Validator validator, String value) {

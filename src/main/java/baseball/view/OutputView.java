@@ -1,12 +1,14 @@
 package baseball.view;
 
+import baseball.constant.Constants;
+
 public class OutputView {
 
     public static final String BALL = "볼";
     public static final String STRIKE = "스트라이크";
     public static final String NOT_THING = "낫싱";
     public static final String BASEBALL_GAME_START_MESSAGE = "숫자 야구 게임을 시작합니다.";
-    public static final String BASEBALL_GAME_END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+    public static final String BASEBALL_GAME_END_MESSAGE = "%s개의 숫자를 모두 맞히셨습니다! 게임 종료";
 
     public OutputView() {
     }
@@ -28,6 +30,6 @@ public class OutputView {
     }
 
     public void printEndMessage() {
-        System.out.println(BASEBALL_GAME_END_MESSAGE);
+        System.out.printf((BASEBALL_GAME_END_MESSAGE) + "\n", Constants.GOAL);
     }
 }
