@@ -1,6 +1,5 @@
-package baseball.controller;
+package baseball.service;
 
-import baseball.service.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
