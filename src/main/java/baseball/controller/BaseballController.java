@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.converter.TypeConvert;
+import baseball.service.Score;
 import baseball.utils.GenerateRandomNumbers;
 import baseball.validation.InputValidator;
 import baseball.validation.RestartValidator;

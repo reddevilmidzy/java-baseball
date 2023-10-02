@@ -1,4 +1,4 @@
-package baseball.controller;
+package baseball.service;
 
 import java.util.List;
 import java.util.stream.IntStream;
